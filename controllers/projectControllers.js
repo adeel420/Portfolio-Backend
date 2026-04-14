@@ -26,7 +26,7 @@ exports.create = async (req, res) => {
 
 exports.get = async (req, res) => {
   try {
-    const response = await Project.find();
+    const response = await Project.find().sort({ _id: -1 });
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
