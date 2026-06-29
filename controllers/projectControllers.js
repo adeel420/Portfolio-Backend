@@ -78,3 +78,19 @@ exports.deleted = async (req, res) => {
     res.status(500).json({ error: "internal server error" });
   }
 };
+
+exports.toggleFeatured = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const project = await Project.findById(id);
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+    project.featured = !project.featured;
+    await project.save();
+    res.status(200).json(project);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "internal server error" });
+  }
+};

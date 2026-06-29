@@ -5,6 +5,7 @@ const {
   singleGet,
   update,
   deleted,
+  toggleFeatured,
 } = require("../controllers/projectControllers");
 const router = express.Router();
 const multer = require("multer");
@@ -26,5 +27,6 @@ router.get("/", get);
 router.get("/:id", singleGet);
 router.put("/:id", upload.single("image"), update);
 router.delete("/:id", deleted);
+router.put("/featured/:id", toggleFeatured);
 
 module.exports = router;
